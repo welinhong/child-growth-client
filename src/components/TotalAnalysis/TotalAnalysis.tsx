@@ -19,7 +19,7 @@ const TotalAnalysis = ({ range, selectedRangeIndex, monthAfterBirth }: Props): J
 
   // 이 외에는 NN~MM구간으로 출력
   const highRank = `상위 ${range[selectedRangeIndex - 1]?.percentile}%이상에 속해요!`
-  const normalRank = `${range[selectedRangeIndex - 1]?.percentile}~${
+  const normalRank = `${range[selectedRangeIndex - 1]?.percentile ?? 0}~${
     range[selectedRangeIndex]?.percentile
   }% 사이에 속해요!`
 

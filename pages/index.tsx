@@ -3,6 +3,7 @@ import styled from "styled-components"
 import axios from "axios"
 import { getMonthsAfterBirth } from "../src/utils/calculator"
 import TotalAnalysis from "../src/components/TotalAnalysis/TotalAnalysis"
+import Image from "next/image"
 
 export default function Home() {
   const [birthday, setBirthday] = useState("2022-01-01")
@@ -17,11 +18,10 @@ export default function Home() {
     height: string
     sex: "female" | "male"
   }) => {
-    // TODO: baseUrl 변경 될 예정
     const baseUrl = "http://3.37.248.174/api"
     const endpoint = `/height/range?monthAfterBirth=${info.monthAfterBirth}&height=${info.height}&sex=${info.sex}`
-    const data = await axios.get(`${baseUrl}${endpoint}`)
 
+    const data = await axios.get(`${baseUrl}${endpoint}`)
     return data.data
   }
 
@@ -68,13 +68,19 @@ export default function Home() {
         {!isAnalysis && (
           <>
             <StyledCenterBox>
-              <h3>우리 아이 키 잘 크고 있을까요?</h3>
+              <StyledCenteredTitle1>🐥</StyledCenteredTitle1>
+              <StyledCenteredTitle>우리 아이 키 잘 크고 있을까요?</StyledCenteredTitle>
             </StyledCenterBox>
 
             <StyledField>
               <StyledLabel htmlFor="birthday">출생일</StyledLabel>
               <StyledValue>
-                <input type="date" id="birthday" value={birthday} onChange={handleBirthdayChange} />
+                <StyledInput
+                  type="date"
+                  id="birthday"
+                  value={birthday}
+                  onChange={handleBirthdayChange}
+                />
               </StyledValue>
             </StyledField>
 
@@ -109,7 +115,7 @@ export default function Home() {
             <StyledField>
               <StyledLabel htmlFor="height">키</StyledLabel>
               <StyledValue>
-                <input
+                <StyledInput
                   type="number"
                   id="height"
                   value={height}
@@ -178,5 +184,21 @@ const StyledButton = styled.button`
 `
 const StyledCenterBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+`
+const StyledInput = styled.input`
+  border: none;
+  border-bottom: 2px solid #000;
+  font-size: 20px;
+`
+const StyledCenteredTitle = styled.h3`
+  display: flex;
+  justify-content: center;
+`
+const StyledCenteredTitle1 = styled.h1`
+  display: flex;
+  justify-content: center;
+  font-size: 60px;
+  margin: 10px 0;
 `
