@@ -18,7 +18,7 @@ export default function Home() {
     sex: "female" | "male"
   }) => {
     // TODO: baseUrl 변경 될 예정
-    const baseUrl = "https://fbbe7fc6-8525-4598-a4f5-3556d5e215a9.mock.pstmn.io"
+    const baseUrl = "http://3.37.248.174/api"
     const endpoint = `/height/range?monthAfterBirth=${info.monthAfterBirth}&height=${info.height}&sex=${info.sex}`
     const data = await axios.get(`${baseUrl}${endpoint}`)
 
