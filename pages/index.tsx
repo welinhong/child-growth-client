@@ -165,6 +165,7 @@ const StyledContainerInner = styled.div`
   border: 3px solid orange;
   border-radius: 8px;
   background-color: #fff;
+  color: black;
 `
 const StyledField = styled.div`
   display: flex;
@@ -181,6 +182,7 @@ const StyledButton = styled.button`
   font-size: 18px;
   cursor: pointer;
   margin-top: 20px;
+  color: black;
 `
 const StyledCenterBox = styled.div`
   display: flex;
@@ -195,6 +197,7 @@ const StyledInput = styled.input`
 const StyledCenteredTitle = styled.h3`
   display: flex;
   justify-content: center;
+  color: black;
 `
 const StyledCenteredTitle1 = styled.h1`
   display: flex;
