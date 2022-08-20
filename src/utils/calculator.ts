@@ -10,3 +10,7 @@ export const getMonthsAfterBirth = (birthday: string) => {
   // 30으로 나누기
   return Math.floor(diffInDays / 30)
 }
+
+export const getRelativePercentile = (percentile: number) => {
+  return percentile > 50 ? 100 - percentile : percentile
+}

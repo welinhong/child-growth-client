@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import { getRelativePercentile } from "../../utils/calculator"
 
 export type Range = {
   height: number
@@ -43,9 +44,9 @@ const TotalAnalysis = ({ range, selectedRangeIndex, monthAfterBirth }: Props): J
 
         {range.map(({ percentile, height }) => (
           <StyledDivider left={`${percentile}%`} key={percentile}>
-            <StyledRangeInfo>{height}cm</StyledRangeInfo>
+            <StyledRangeInfo>{getRelativePercentile(percentile)}%</StyledRangeInfo>
             <StyledStroke left={`${percentile}%`} />
-            <StyledRangeInfo>{percentile}%</StyledRangeInfo>
+            <StyledRangeInfo>{height}cm</StyledRangeInfo>
           </StyledDivider>
         ))}
 
@@ -81,8 +82,8 @@ const StyledStroke = styled.div<{ left: string }>`
   background-color: lightgray;
 `
 const StyledRangeInfo = styled.div`
-  margin-left: -35%;
   font-size: 10px;
+  margin: 5px 0 5px -25%;
 `
 const StyledIndicator = styled.div<{ left: number }>`
   position: absolute;
