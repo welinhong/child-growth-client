@@ -157,6 +157,9 @@ const StyledContainer = styled.div`
   width: 100%;
   height: 100vh;
   background-color: lightgray;
+  @media (max-width: 780px) {
+    background-color: none;
+  }
 `
 const StyledContainerInner = styled.div`
   min-width: 370px;
@@ -166,6 +169,11 @@ const StyledContainerInner = styled.div`
   border-radius: 8px;
   background-color: #fff;
   color: black;
+
+  // 모바일에서는 border와 background-color를 제거한다
+  @media (max-width: 780px) {
+    border: none;
+  }
 `
 const StyledField = styled.div`
   display: flex;
@@ -175,7 +183,12 @@ const StyledLabel = styled.label`
   display: block;
   width: 100px;
 `
-const StyledValue = styled.div``
+const StyledValue = styled.div`
+  // FIXME: 아래 label 스타일링 따로 적용하기
+  label {
+    margin-right: 20px;
+  }
+`
 const StyledButton = styled.button`
   background-color: transparent;
   border: none;
