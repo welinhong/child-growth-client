@@ -156,10 +156,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
-  background-color: lightgray;
-  @media (max-width: 780px) {
-    background-color: none;
-  }
+  background: lightyellow;
 `
 const StyledContainerInner = styled.div`
   min-width: 370px;
@@ -173,6 +170,7 @@ const StyledContainerInner = styled.div`
   // 모바일에서는 border와 background-color를 제거한다
   @media (max-width: 780px) {
     border: none;
+    background: inherit;
   }
 `
 const StyledField = styled.div`

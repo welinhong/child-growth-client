@@ -49,7 +49,7 @@ const TotalAnalysis = ({ range, selectedRangeIndex, monthAfterBirth }: Props): J
           </StyledDivider>
         ))}
 
-        <StyledIndicator left={`${range[selectedRangeIndex]?.percentile}`}>🌟</StyledIndicator>
+        <StyledIndicator left={range[selectedRangeIndex]?.percentile || 0}>🌟</StyledIndicator>
       </StyledGraph>
     </StyledContainer>
   )
