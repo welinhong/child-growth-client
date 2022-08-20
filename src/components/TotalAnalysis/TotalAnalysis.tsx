@@ -29,7 +29,28 @@ const TotalAnalysis = ({ range, selectedRangeIndex, monthAfterBirth }: Props): J
   return (
     <StyledContainer>
       <h3>{monthAfterBirth}개월 우리아이</h3>
-      <h2>{result}</h2>
+      <StyledResult>{result}</StyledResult>
+
+      <StyledGraph>
+        <svg viewBox="0 0 800 320">
+          <path
+            d="M 50 300 Q 200 300 300 150 Q 400 0 500 150 Q 600 300 750 300 "
+            fill="none"
+            stroke="darkorange"
+            strokeWidth="5px"
+          />
+        </svg>
+
+        {range.map(({ percentile, height }) => (
+          <StyledDivider left={`${percentile}%`} key={percentile}>
+            <StyledRangeInfo>{height}cm</StyledRangeInfo>
+            <StyledStroke left={`${percentile}%`} />
+            <StyledRangeInfo>{percentile}%</StyledRangeInfo>
+          </StyledDivider>
+        ))}
+
+        <StyledIndicator left={`${range[selectedRangeIndex]?.percentile}`}>🌟</StyledIndicator>
+      </StyledGraph>
     </StyledContainer>
   )
 }
@@ -40,5 +61,35 @@ const StyledContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 `
-
+const StyledResult = styled.h2`
+  margin-bottom: 30px;
+`
+const StyledGraph = styled.div`
+  width: 100%;
+  position: relative;
+  margin-bottom: 50px;
+`
+const StyledDivider = styled.div<{ left: string }>`
+  height: 90%;
+  position: absolute;
+  left: ${({ left }) => left};
+  bottom: 10px;
+`
+const StyledStroke = styled.div<{ left: string }>`
+  width: 2px;
+  height: 100%;
+  background-color: lightgray;
+`
+const StyledRangeInfo = styled.div`
+  margin-left: -35%;
+  font-size: 10px;
+`
+const StyledIndicator = styled.div<{ left: number }>`
+  position: absolute;
+  left: ${({ left }) => `calc(${left}% + ${left > 10 ? "5px" : 0})`};
+  bottom: 50%;
+  width: 10px;
+  height: 10px;
+  font-size: 20px;
+`
 export default TotalAnalysis
