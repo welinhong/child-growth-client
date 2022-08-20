@@ -9,28 +9,37 @@ export type Range = {
 
 export type Props = {
   range: Range[]
+  height: string
   selectedRangeIndex: number
   monthAfterBirth: number
 }
 
-const TotalAnalysis = ({ range, selectedRangeIndex, monthAfterBirth }: Props): JSX.Element => {
-  // 끝에서 마지막 2구간인 경우 상위 ~에 속해요 출력
-  const lastSection = range.length
-  const beforeLastSection = range.length - 1
+const TotalAnalysis = ({
+  range,
+  height,
+  selectedRangeIndex,
+  monthAfterBirth,
+}: Props): JSX.Element => {
+  console.log("selectedRangeIndex", selectedRangeIndex)
 
-  // 이 외에는 NN~MM구간으로 출력
-  const highRank = `상위 ${range[selectedRangeIndex - 1]?.percentile}%이상에 속해요!`
-  const normalRank = `${range[selectedRangeIndex - 1]?.percentile ?? 0}~${
-    range[selectedRangeIndex]?.percentile
-  }% 사이에 속해요!`
+  const selectedSection = range[selectedRangeIndex]
+  const prevSection = range[selectedRangeIndex - 1]
+  const nextSection = range[selectedRangeIndex + 1]
 
-  const isHighRank = [lastSection, beforeLastSection].includes(selectedRangeIndex)
-  const result = isHighRank ? highRank : normalRank
+  // 평균보다 작은 경우, 평균인 경우, 평균보다 큰 경우
+  const middleSection = range[Math.floor(range.length / 2)]
+  const diff = Number((middleSection.height - Number(height)).toFixed(1))
+  const message =
+    diff > 0
+      ? `또래 평균키 ${middleSection.height}cm 보다\n약 ${diff}cm 작아요!`
+      : diff < 0
+      ? `또래 평균키 ${middleSection.height}cm 보다\n약 ${diff * -1}cm 크네요!`
+      : "딱 또래 평균키네요!"
 
   return (
     <StyledContainer>
       <h3>{monthAfterBirth}개월 우리아이</h3>
-      <StyledResult>{result}</StyledResult>
+      <StyledMessage>{message}</StyledMessage>
 
       <StyledGraph>
         <svg viewBox="0 0 800 320">
@@ -62,8 +71,11 @@ const StyledContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 `
-const StyledResult = styled.h2`
+const StyledMessage = styled.h2`
   margin-bottom: 30px;
+  text-align: center;
+  white-space: pre-wrap;
+  line-height: 1.5;
 `
 const StyledGraph = styled.div`
   width: 100%;
