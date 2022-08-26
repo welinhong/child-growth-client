@@ -10,22 +10,17 @@ export type Range = {
 export type Props = {
   range: Range[]
   height: string
-  selectedRangeIndex: number
+  selectedSectionIndex: number
   monthAfterBirth: number
 }
 
+const INDICATOR_SIZE = 20
 const TotalAnalysis = ({
   range,
   height,
-  selectedRangeIndex,
+  selectedSectionIndex,
   monthAfterBirth,
 }: Props): JSX.Element => {
-  console.log("selectedRangeIndex", selectedRangeIndex)
-
-  const selectedSection = range[selectedRangeIndex]
-  const prevSection = range[selectedRangeIndex - 1]
-  const nextSection = range[selectedRangeIndex + 1]
-
   // 평균보다 작은 경우, 평균인 경우, 평균보다 큰 경우
   const middleSection = range[Math.floor(range.length / 2)]
   const diff = Number((middleSection.height - Number(height)).toFixed(1))
@@ -35,6 +30,20 @@ const TotalAnalysis = ({
       : diff < 0
       ? `또래 평균키 ${middleSection.height}cm 보다\n약 ${diff * -1}cm 크네요!`
       : "딱 또래 평균키네요!"
+
+  let indicatorPosition = null
+  if (selectedSectionIndex === 0) {
+    // 첫번째 구간
+    indicatorPosition = range[0].percentile / 2
+  } else if (selectedSectionIndex === range.length) {
+    // 마지막 구간
+    const lastIndex = range.length - 1
+    indicatorPosition = (range[lastIndex].percentile + 100) / 2
+  } else {
+    const prevRange = range[selectedSectionIndex - 1]
+    const nextRange = range[selectedSectionIndex]
+    indicatorPosition = (prevRange.percentile + nextRange.percentile) / 2
+  }
 
   return (
     <StyledContainer>
@@ -59,11 +68,12 @@ const TotalAnalysis = ({
           </StyledDivider>
         ))}
 
-        <StyledIndicator left={range[selectedRangeIndex]?.percentile || 0}>🌟</StyledIndicator>
+        <StyledIndicator left={indicatorPosition}>🌟</StyledIndicator>
       </StyledGraph>
     </StyledContainer>
   )
 }
+// TODO: 해당하는 색션 구하는 로직을 TDD로 구현하기
 
 const StyledContainer = styled.div`
   display: flex;
@@ -99,10 +109,8 @@ const StyledRangeInfo = styled.div`
 `
 const StyledIndicator = styled.div<{ left: number }>`
   position: absolute;
-  left: ${({ left }) => `calc(${left}% + ${left > 10 ? "5px" : 0})`};
+  left: ${({ left }) => `calc(${left}% - ${INDICATOR_SIZE / 2}px)`};
   bottom: 50%;
-  width: 10px;
-  height: 10px;
-  font-size: 20px;
+  font-size: ${INDICATOR_SIZE}px;
 `
 export default TotalAnalysis

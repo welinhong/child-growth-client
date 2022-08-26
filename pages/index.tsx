@@ -137,7 +137,7 @@ export default function Home() {
             <TotalAnalysis
               range={analysis.range}
               height={height}
-              selectedRangeIndex={analysis.rangeIndex}
+              selectedSectionIndex={analysis.rangeIndex}
               monthAfterBirth={monthAfterBirth}
             />
 
