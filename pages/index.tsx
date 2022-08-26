@@ -26,7 +26,7 @@ export default function Home() {
   }
 
   const handleClick = async () => {
-    if (!monthAfterBirth || !height || !sex) {
+    if (!birthday || !height || !sex) {
       return alert("모든 항목을 입력해주세요")
     }
 
@@ -132,9 +132,7 @@ export default function Home() {
             </StyledField>
 
             <StyledCenterBox>
-              <StyledButton disabled={!monthAfterBirth || !height || !sex} onClick={handleClick}>
-                확인하기
-              </StyledButton>
+              <StyledButton onClick={handleClick}>확인하기</StyledButton>
             </StyledCenterBox>
           </>
         )}
@@ -232,9 +230,10 @@ const StyledInput = styled.input<{ padding?: string }>`
   border-bottom: 2px solid gray;
   background-color: lightyellow;
   font-size: 20px;
+  color: black;
+
   ${({ padding }) => padding ?? `padding-right: ${padding};`}
 
-  color: black;
   text-align: left;
   &::-webkit-date-and-time-value {
     text-align: left;
