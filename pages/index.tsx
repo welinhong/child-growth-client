@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useState } from "react"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import axios from "axios"
 import { getMonthsAfterBirth } from "../src/utils/calculator"
 import TotalAnalysis from "../src/components/TotalAnalysis/TotalAnalysis"
@@ -7,7 +7,7 @@ import Image from "next/image"
 
 export default function Home() {
   const [birthday, setBirthday] = useState("2022-01-01")
-  const [sex, setSex] = useState<"male" | "female">("male")
+  const [sex, setSex] = useState<"male" | "female" | "">("")
   const [height, setHeight] = useState("")
   const [isAnalysis, setIsAnalysis] = useState(false)
   const [analysis, setAnalysis] = useState({ range: [], rangeIndex: null })
@@ -26,6 +26,10 @@ export default function Home() {
   }
 
   const handleClick = async () => {
+    if (!monthAfterBirth || !height || !sex) {
+      return alert("모든 항목을 입력해주세요")
+    }
+
     // 개월 수 계산
     const months = getMonthsAfterBirth(birthday)
     setMonthAfterBirth(months)
@@ -87,7 +91,7 @@ export default function Home() {
             <StyledField>
               <StyledLabel htmlFor="male">성별</StyledLabel>
               <StyledValue>
-                <label>
+                <StyledRadioLabel checked={sex === "male"}>
                   <input
                     type="radio"
                     name="sex"
@@ -97,8 +101,8 @@ export default function Home() {
                     onChange={handleSexChange}
                   />
                   남자
-                </label>
-                <label>
+                </StyledRadioLabel>
+                <StyledRadioLabel checked={sex === "female"}>
                   <input
                     type="radio"
                     name="sex"
@@ -108,7 +112,7 @@ export default function Home() {
                     onChange={handleSexChange}
                   />
                   여자
-                </label>
+                </StyledRadioLabel>
               </StyledValue>
             </StyledField>
 
@@ -121,13 +125,16 @@ export default function Home() {
                   value={height}
                   placeholder="입력해주세요"
                   onChange={handleHeightChange}
+                  padding="45px"
                 />
-                cm
+                <StyledUnit>cm</StyledUnit>
               </StyledValue>
             </StyledField>
 
             <StyledCenterBox>
-              <StyledButton onClick={handleClick}>확인하기</StyledButton>
+              <StyledButton disabled={!monthAfterBirth || !height || !sex} onClick={handleClick}>
+                확인하기
+              </StyledButton>
             </StyledCenterBox>
           </>
         )}
@@ -158,25 +165,28 @@ const StyledContainer = styled.div`
   width: 100%;
   height: 100vh;
   background: lightyellow;
+  position: relative;
+  @media (max-width: 580px) {
+    height: auto;
+  }
 `
 const StyledContainerInner = styled.div`
-  min-width: 370px;
-  max-width: 800px;
+  width: 100%;
+  max-width: 580px;
   padding: 30px 20px;
-  border: 3px solid orange;
   border-radius: 8px;
-  background-color: #fff;
   color: black;
 
   // 모바일에서는 border와 background-color를 제거한다
-  @media (max-width: 780px) {
+  @media (max-width: 580px) {
     border: none;
     background: inherit;
   }
 `
 const StyledField = styled.div`
   display: flex;
-  margin: 30px 0;
+  align-items: center;
+  margin: 5vh 0;
 `
 const StyledLabel = styled.label`
   display: block;
@@ -184,27 +194,52 @@ const StyledLabel = styled.label`
 `
 const StyledValue = styled.div`
   // FIXME: 아래 label 스타일링 따로 적용하기
-  label {
-    margin-right: 20px;
-  }
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
 `
-const StyledButton = styled.button`
+const StyledUnit = styled.div`
+  position: absolute;
+  right: 0;
+  padding-right: 15px;
+`
+const StyledButton = styled.button<{ disabled?: boolean }>`
   background-color: transparent;
   border: none;
   font-size: 18px;
   cursor: pointer;
-  margin-top: 20px;
-  color: black;
+  margin-top: 25px;
+  color: gray;
+  border: 2px solid gray;
+  padding: 10px 20px;
+  border-radius: 8px;
+
+  &:hover {
+    background: #f4f4f4;
+    opacity: 0.7;
+  }
 `
 const StyledCenterBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
 `
-const StyledInput = styled.input`
+const StyledInput = styled.input<{ padding?: string }>`
   border: none;
-  border-bottom: 2px solid #000;
+  width: 100%;
+  border-radius: 0;
+  border-bottom: 2px solid gray;
+  background-color: lightyellow;
   font-size: 20px;
+  ${({ padding }) => padding ?? `padding-right: ${padding};`}
+
+  color: black;
+  text-align: left;
+  &::-webkit-date-and-time-value {
+    text-align: left;
+  }
+  -webkit-appearance: none;
 `
 const StyledCenteredTitle = styled.h3`
   display: flex;
@@ -216,4 +251,22 @@ const StyledCenteredTitle1 = styled.h1`
   justify-content: center;
   font-size: 60px;
   margin: 10px 0;
+`
+const StyledRadioLabel = styled.label<{ checked: boolean }>`
+  border: 2px solid gray;
+  border-radius: 8px;
+  padding: 5px 12px;
+
+  margin-right: 10px;
+  color: gray;
+  input {
+    display: none;
+  }
+  ${({ checked }) =>
+    checked &&
+    css`
+      font-weight: bold;
+      color: darkorange;
+      border-color: darkorange;
+    `}
 `
