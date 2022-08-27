@@ -161,12 +161,9 @@ const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: lightyellow;
   position: relative;
-  @media (max-width: 580px) {
-    height: auto;
-  }
 `
 const StyledContainerInner = styled.div`
   width: 100%;
