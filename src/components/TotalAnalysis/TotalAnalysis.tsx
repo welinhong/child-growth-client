@@ -91,6 +91,10 @@ const StyledGraph = styled.div`
   width: 100%;
   position: relative;
   margin-bottom: 50px;
+  svg {
+    position: relative;
+    z-index: 1;
+  }
 `
 const StyledDivider = styled.div<{ left: string }>`
   height: 90%;
