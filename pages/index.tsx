@@ -18,7 +18,7 @@ export default function Home() {
     height: string
     sex: "female" | "male"
   }) => {
-    const baseUrl = "http://3.37.248.174/api"
+    const baseUrl = "https://www.check-ki.com/api"
     const endpoint = `/height/range?monthAfterBirth=${info.monthAfterBirth}&height=${info.height}&sex=${info.sex}`
 
     const data = await axios.get(`${baseUrl}${endpoint}`)
