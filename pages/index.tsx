@@ -5,8 +5,9 @@ import { getMonthsAfterBirth } from "../src/utils/calculator"
 import TotalAnalysis from "../src/components/TotalAnalysis/TotalAnalysis"
 import Image from "next/image"
 
+const DEFAULT_BIRTHDAY = "20220101"
 export default function Home() {
-  const [birthday, setBirthday] = useState("2022-01-01")
+  const [birthday, setBirthday] = useState(DEFAULT_BIRTHDAY)
   const [sex, setSex] = useState<"male" | "female" | "">("")
   const [height, setHeight] = useState("")
   const [isAnalysis, setIsAnalysis] = useState(false)
@@ -80,9 +81,9 @@ export default function Home() {
               <StyledLabel htmlFor="birthday">출생일</StyledLabel>
               <StyledValue>
                 <StyledInput
-                  type="date"
                   id="birthday"
                   value={birthday}
+                  placeholder={`YYYYMMDD (ex.20220101)`}
                   onChange={handleBirthdayChange}
                 />
               </StyledValue>
