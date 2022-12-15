@@ -72,10 +72,10 @@ export default function Home() {
       <StyledContainerInner>
         {!isAnalysis && (
           <>
-            <StyledCenterBox>
-              <StyledCenteredTitle1>🐥</StyledCenteredTitle1>
+            <StyledCenterWrapper>
+              <Image src="/logo.webp" width={120} height={120} alt="logo" />
               <StyledCenteredTitle>우리 아이 키 잘 크고 있을까요?</StyledCenteredTitle>
-            </StyledCenterBox>
+            </StyledCenterWrapper>
 
             <StyledField>
               <StyledLabel htmlFor="birthday">출생일</StyledLabel>
@@ -222,6 +222,9 @@ const StyledCenterBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+`
+const StyledCenterWrapper = styled.div`
+  text-align: center;
 `
 const StyledInput = styled.input<{ padding?: string }>`
   border: none;
