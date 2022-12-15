@@ -188,6 +188,7 @@ const StyledField = styled.div`
 const StyledLabel = styled.label`
   display: block;
   width: 100px;
+  font-size: 20px;
 `
 const StyledValue = styled.div`
   // FIXME: 아래 label 스타일링 따로 적용하기

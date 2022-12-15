@@ -47,7 +47,7 @@ const TotalAnalysis = ({
 
   return (
     <StyledContainer>
-      <h3>{monthAfterBirth}개월 우리아이</h3>
+      <StyledTitle>{monthAfterBirth}개월 우리아이</StyledTitle>
       <StyledMessage>{message}</StyledMessage>
 
       <StyledGraph>
@@ -81,6 +81,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   flex-direction: column;
 `
+const StyledTitle = styled.h2``
 const StyledMessage = styled.h2`
   margin-bottom: 30px;
   text-align: center;
@@ -108,7 +109,7 @@ const StyledStroke = styled.div<{ left: string }>`
   background-color: lightgray;
 `
 const StyledRangeInfo = styled.div`
-  font-size: 10px;
+  font-size: 13px;
   margin: 5px 0 5px -25%;
 `
 const StyledIndicator = styled.div<{ left: number }>`
