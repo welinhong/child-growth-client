@@ -4,6 +4,7 @@ import axios from "axios"
 import { getMonthsAfterBirth } from "../src/utils/calculator"
 import TotalAnalysis from "../src/components/TotalAnalysis/TotalAnalysis"
 import Image from "next/image"
+import Head from "next/head"
 
 const DEFAULT_BIRTHDAY = "20220101"
 export default function Home() {
@@ -69,6 +70,13 @@ export default function Home() {
 
   return (
     <StyledContainer>
+      <Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8776339221322071"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
       <StyledContainerInner>
         {!isAnalysis && (
           <>
