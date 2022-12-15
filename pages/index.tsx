@@ -47,8 +47,6 @@ export default function Home() {
     if (analysis) {
       setIsAnalysis(true)
       setAnalysis(analysis)
-
-      console.log("analysis", analysis)
     }
   }
 
