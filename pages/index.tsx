@@ -8,7 +8,7 @@ import CustomHeader from "../src/components/CustomHeader"
 
 const DEFAULT_BIRTHDAY = "20220101"
 export default function Home() {
-  const [birthday, setBirthday] = useState(DEFAULT_BIRTHDAY)
+  const [birthday, setBirthday] = useState("")
   const [sex, setSex] = useState<"male" | "female" | "">("")
   const [height, setHeight] = useState("")
   const [isAnalysis, setIsAnalysis] = useState(false)
