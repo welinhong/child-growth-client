@@ -34,6 +34,9 @@ export default function Home() {
 
     // 개월 수 계산
     const months = getMonthsAfterBirth(birthday)
+    if (months > 227) {
+      return alert("만 18세 이하만 확인할 수 있습니다.")
+    }
     setMonthAfterBirth(months)
 
     // API 호출
