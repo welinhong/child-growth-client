@@ -1,7 +1,7 @@
 export const getMonthsAfterBirth = (birthday: string) => {
   // 출생 후 지난 일
   const todayInSec = new Date().getTime()
-  const dateStr = `${birthday.slice(0, 4)}.${birthday.slice(4, 6)}.${birthday.slice(6, 8)}`
+  const dateStr = `${birthday.slice(0, 4)}-${birthday.slice(4, 6)}-${birthday.slice(6, 8)}`
   const birthdayInSecs = new Date(dateStr).getTime()
 
   const difference = todayInSec - birthdayInSecs
