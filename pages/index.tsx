@@ -33,23 +33,28 @@ export default function Home() {
     }
 
     // 개월 수 계산
-    const months = getMonthsAfterBirth(birthday)
-    if (months > 227) {
-      return alert("만 18세 이하만 확인할 수 있습니다.")
-    }
-    setMonthAfterBirth(months)
+    try {
+      const months = getMonthsAfterBirth(birthday)
+      if (months > 227) {
+        return alert("만 18세 이하만 확인할 수 있습니다.")
+      }
+      setMonthAfterBirth(months)
 
-    // API 호출
-    const analysis = await getHeightAnalysis({
-      monthAfterBirth: months,
-      height,
-      sex,
-    })
+      // API 호출
+      const analysis = await getHeightAnalysis({
+        monthAfterBirth: months,
+        height,
+        sex,
+      })
 
-    // 결과 출력
-    if (analysis) {
-      setIsAnalysis(true)
-      setAnalysis(analysis)
+      // 결과 출력
+      if (analysis) {
+        setIsAnalysis(true)
+        setAnalysis(analysis)
+      }
+    } catch (e) {
+      console.log("error:", e)
+      return alert("현재 페이지에 오류가 있습니다. 잠시후 다시 시도해주세요.")
     }
   }
 
