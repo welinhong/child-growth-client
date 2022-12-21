@@ -12,6 +12,11 @@ const CustomHeader = ({}: Props): JSX.Element => {
       <meta name="description" content="키성장 체크 3초면 끝!" key="description" />
       <meta property="og:title" content="체크키" key="og:title" />
       <meta property="og:description" content="키성장 체크 3초면 끝!" key="og:description" />
+      <meta
+        property="og:image"
+        content="https://child-growth.s3.ap-northeast-2.amazonaws.com/static/check-ki-logo.png"
+        key="og:image"
+      />
       <script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8776339221322071"
