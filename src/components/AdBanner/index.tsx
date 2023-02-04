@@ -4,7 +4,7 @@ const AdBanner = () => {
   return (
     <Container>
       <iframe
-        src="https://ads-partners.coupang.com/widgets.html?id=637101&template=carousel&trackingCode=AF6479878&subId=&width=540&height=150"
+        src="https://ads-partners.coupang.com/widgets.html?id=637101&template=carousel&trackingCode=AF6479878&subId=&width=540&height=100"
         width="100%"
         height="150"
         frameBorder="0"
