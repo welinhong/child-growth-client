@@ -116,6 +116,7 @@ const StyledIndicator = styled.div<{ left: number }>`
   position: absolute;
   left: ${({ left }) => `calc(${left}% - ${INDICATOR_SIZE / 2}px)`};
   bottom: 50%;
+  z-index: 1;
   font-size: ${INDICATOR_SIZE}px;
 `
 export default TotalAnalysis
