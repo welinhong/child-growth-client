@@ -5,6 +5,7 @@ import { getMonthsAfterBirth } from "../src/utils/calculator"
 import TotalAnalysis from "../src/components/TotalAnalysis/TotalAnalysis"
 import Image from "next/image"
 import CustomHeader from "../src/components/CustomHeader"
+import AdBanner from "../src/components/AdBanner"
 
 const DEFAULT_BIRTHDAY = "20220101"
 export default function Home() {
@@ -158,7 +159,7 @@ export default function Home() {
             <StyledCenterBox>
               <StyledButton onClick={handleGoBack}>돌아가기</StyledButton>
             </StyledCenterBox>
-            <StyledAd>광고 영역</StyledAd>
+            <AdBanner />
           </>
         )}
       </StyledContainerInner>
@@ -279,12 +280,4 @@ const StyledRadioLabel = styled.label<{ checked: boolean }>`
       color: darkorange;
       border-color: darkorange;
     `}
-`
-
-const StyledAd = styled.div`
-  background: lightgray;
-  width: 100%;
-  margin-top: 10vh;
-  padding: 10px 20px;
-  height: 70px;
 `
