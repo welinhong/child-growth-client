@@ -78,7 +78,6 @@ export default function Home() {
   return (
     <StyledContainer>
       <CustomHeader />
-      <AdBanner />
       <StyledContainerInner>
         {!isAnalysis && (
           <>
