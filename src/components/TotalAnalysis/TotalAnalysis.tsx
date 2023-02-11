@@ -70,6 +70,8 @@ const TotalAnalysis = ({
 
         <StyledIndicator left={indicatorPosition}>🌟</StyledIndicator>
       </StyledGraph>
+
+      <Reference>출처: 소아청소년성장도표 (질병관리청)</Reference>
     </StyledContainer>
   )
 }
@@ -119,4 +121,11 @@ const StyledIndicator = styled.div<{ left: number }>`
   z-index: 1;
   font-size: ${INDICATOR_SIZE}px;
 `
+const Reference = styled.div`
+  width: 100%;
+  font-size: 10px;
+  color: #959ca6;
+  text-align: right;
+`
+
 export default TotalAnalysis
