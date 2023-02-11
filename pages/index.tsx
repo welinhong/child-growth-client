@@ -7,9 +7,9 @@ import Image from "next/image"
 import CustomHeader from "../src/components/CustomHeader"
 import AdBanner from "../src/components/AdBanner"
 
-const DEFAULT_BIRTHDAY = "20220101"
+const DEFAULT_BIRTHDAY = "2022-01-01"
 export default function Home() {
-  const [birthday, setBirthday] = useState("")
+  const [birthday, setBirthday] = useState(DEFAULT_BIRTHDAY)
   const [sex, setSex] = useState<"male" | "female" | "">("")
   const [height, setHeight] = useState("")
   const [isAnalysis, setIsAnalysis] = useState(false)
