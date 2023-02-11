@@ -89,12 +89,7 @@ export default function Home() {
             <StyledField>
               <StyledLabel htmlFor="birthday">출생일</StyledLabel>
               <StyledValue>
-                <StyledInput
-                  id="birthday"
-                  value={birthday}
-                  placeholder={`YYYYMMDD (ex.20220101)`}
-                  onChange={handleBirthdayChange}
-                />
+                <Input id="birthday" type="date" value={birthday} onChange={handleBirthdayChange} />
               </StyledValue>
             </StyledField>
 
@@ -129,13 +124,13 @@ export default function Home() {
             <StyledField>
               <StyledLabel htmlFor="height">키</StyledLabel>
               <StyledValue>
-                <StyledInput
-                  type="number"
+                <Input
                   id="height"
+                  type="number"
                   value={height}
+                  padding="40px"
                   placeholder="입력해주세요"
                   onChange={handleHeightChange}
-                  padding="45px"
                 />
                 <StyledUnit>cm</StyledUnit>
               </StyledValue>
@@ -167,6 +162,8 @@ export default function Home() {
   )
 }
 
+const BORDER_COLOR = "#959ca6"
+const BORDER_FOCUS_COLOR = "#52565d"
 const StyledContainer = styled.div`
   display: flex;
   align-items: center;
@@ -217,8 +214,8 @@ const StyledButton = styled.button<{ disabled?: boolean }>`
   font-size: 18px;
   cursor: pointer;
   margin-top: 25px;
-  color: gray;
-  border: 2px solid gray;
+  color: ${BORDER_COLOR};
+  border: 2px solid ${BORDER_COLOR};
   padding: 10px 20px;
   border-radius: 8px;
 
@@ -235,22 +232,19 @@ const StyledCenterBox = styled.div`
 const StyledCenterWrapper = styled.div`
   text-align: center;
 `
-const StyledInput = styled.input<{ padding?: string }>`
-  border: none;
-  width: 100%;
-  border-radius: 0;
-  border-bottom: 2px solid gray;
-  background-color: lightyellow;
+const Input = styled.input<{ padding?: string }>`
+  border: 0;
+  border-bottom: 2px solid ${BORDER_COLOR};
   font-size: 20px;
+  color-scheme: light;
   color: black;
-
-  ${({ padding }) => padding ?? `padding-right: ${padding};`}
-
-  text-align: left;
-  &::-webkit-date-and-time-value {
-    text-align: left;
+  background: transparent;
+  width: 100%;
+  &:focus {
+    outline: none;
+    border-color: ${BORDER_FOCUS_COLOR};
   }
-  -webkit-appearance: none;
+  ${({ padding }) => padding && `padding-right: ${padding};`}
 `
 const StyledCenteredTitle = styled.h3`
   display: flex;
