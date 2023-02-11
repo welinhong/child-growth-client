@@ -7,7 +7,7 @@ import Image from "next/image"
 import CustomHeader from "../src/components/CustomHeader"
 import AdBanner from "../src/components/AdBanner"
 
-const DEFAULT_BIRTHDAY = "2022-01-01"
+const DEFAULT_BIRTHDAY = "2020-01-01"
 export default function Home() {
   const [birthday, setBirthday] = useState(DEFAULT_BIRTHDAY)
   const [sex, setSex] = useState<"male" | "female" | "">("")
@@ -173,7 +173,8 @@ const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
   background: lightyellow;
   position: relative;
 `
@@ -224,8 +225,9 @@ const StyledButton = styled.button<{ disabled?: boolean }>`
   border-radius: 8px;
 
   &:hover {
-    background: #f4f4f4;
-    opacity: 0.7;
+    font-weight: bold;
+    color: darkorange;
+    border-color: darkorange;
   }
 `
 const StyledCenterBox = styled.div`
@@ -240,14 +242,14 @@ const Input = styled.input<{ padding?: string }>`
   width: 100%;
   border: 0;
   border-bottom: 2px solid ${BORDER_COLOR};
-  border-radius: none;
+  border-radius: 0;
   font-size: 20px;
   color-scheme: light;
   color: black;
   background: transparent;
   -webkit-appearance: none;
   ${({ padding }) => padding && `padding-right: ${padding};`}
-  
+
   &:focus {
     outline: none;
     border-color: ${BORDER_FOCUS_COLOR};
