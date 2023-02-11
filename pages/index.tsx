@@ -32,6 +32,9 @@ export default function Home() {
     if (!birthday || !height || !sex) {
       return alert("모든 항목을 입력해주세요")
     }
+    if (Number(height) < 10 || Number(height) > 300) {
+      return alert("키는 10cm 이상 300cm 이하의 값으로 입력해주세요")
+    }
 
     // 개월 수 계산
     try {
@@ -129,6 +132,7 @@ export default function Home() {
                   type="number"
                   value={height}
                   padding="40px"
+                  min={10}
                   placeholder="입력해주세요"
                   onChange={handleHeightChange}
                 />
