@@ -71,7 +71,7 @@ const TotalAnalysis = ({
         <StyledIndicator left={indicatorPosition}>🌟</StyledIndicator>
       </StyledGraph>
 
-      <Reference>출처: 소아청소년성장도표 (질병관리청)</Reference>
+      <Reference>출처: 소아청소년성장도표(질병관리청)</Reference>
     </StyledContainer>
   )
 }
