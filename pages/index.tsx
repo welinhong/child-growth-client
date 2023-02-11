@@ -237,18 +237,24 @@ const StyledCenterWrapper = styled.div`
   text-align: center;
 `
 const Input = styled.input<{ padding?: string }>`
+  width: 100%;
   border: 0;
   border-bottom: 2px solid ${BORDER_COLOR};
+  border-radius: none;
   font-size: 20px;
   color-scheme: light;
   color: black;
   background: transparent;
-  width: 100%;
+  -webkit-appearance: none;
+  ${({ padding }) => padding && `padding-right: ${padding};`}
+  
   &:focus {
     outline: none;
     border-color: ${BORDER_FOCUS_COLOR};
   }
-  ${({ padding }) => padding && `padding-right: ${padding};`}
+  &::-webkit-date-and-time-value {
+    text-align: left;
+  }
 `
 const StyledCenteredTitle = styled.h3`
   display: flex;
