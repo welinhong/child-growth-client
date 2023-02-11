@@ -173,8 +173,7 @@ const StyledContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
-  overflow-y: auto;
+  min-height: 100%;
   background: lightyellow;
   position: relative;
 `
@@ -224,8 +223,7 @@ const StyledButton = styled.button<{ disabled?: boolean }>`
   padding: 10px 20px;
   border-radius: 8px;
 
-  &:hover {
-    font-weight: bold;
+  &:active {
     color: darkorange;
     border-color: darkorange;
   }
